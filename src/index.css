@@ -47,6 +47,7 @@ body {
 .gitLogo:hover {
   opacity: 0.5;
 }
+
 .loggerMessage{
   position: absolute;
   top:25%;
@@ -57,4 +58,20 @@ body {
   position: absolute;
   top:25%;
   margin-left: 1vw;
+}
+.chatRoom{
+  position: relative;
+  top: 3.5em;
+  background-color: lightblue;
+  width: 100%;
+}
+.chatLog{
+  overflow-y: scroll;
+  float: left;
+}
+.participentsDiv{
+  float: right;
+}
+.ChatInputDiv{
+  margin: 2em 10%;
 }

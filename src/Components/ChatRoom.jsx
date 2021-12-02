@@ -1,3 +1,6 @@
+import ChatInput from "./ChatInput";
+import ChatLog from "./ChatLog";
+import Participents from "./Participents";
 
 export default function ChatRoom(props){
     return(
@@ -6,8 +9,10 @@ export default function ChatRoom(props){
             {"Must Login to start using ChatRoom"}
         </div>
         :
-        <div>
-            
+        <div className="chatRoom">
+            <ChatLog />
+            <Participents />
+            <ChatInput />
         </div>
     )
 }
