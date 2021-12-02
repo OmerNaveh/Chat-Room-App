@@ -19,7 +19,7 @@ export default function Header(props){
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse>
             <Nav className="me-auto">
-              <Link className="navbarLinks" to='/'>Login</Link>
+              {!props.user?<Link className="navbarLinks" to='/'>Login</Link>:<div className="navbarLinks">{props.user}</div>}
               <Link className="navbarLinks" to='/chat'>Chat</Link>
             </Nav>
           </Navbar.Collapse>

@@ -47,3 +47,14 @@ body {
 .gitLogo:hover {
   opacity: 0.5;
 }
+.loggerMessage{
+  position: absolute;
+  top:25%;
+  text-align: center;
+  font-size: 2rem
+}
+.signIn{
+  position: absolute;
+  top:25%;
+  margin-left: 1vw;
+}
