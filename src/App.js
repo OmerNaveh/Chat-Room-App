@@ -15,7 +15,7 @@ function App() {
       <Header user={user} />
     <Routes>
       <Route path='/' element={<Login logged={logged} setLogged={setLogged} setUser={setUser}/>}/> 
-      <Route path='/chat' element={<ChatRoom logged={logged}/>}/>
+      <Route path='/chat' element={<ChatRoom logged={logged} activeuser={user}/>}/>
     </Routes>
       <Footer />
     </BrowserRouter>

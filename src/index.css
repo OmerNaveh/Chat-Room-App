@@ -60,18 +60,27 @@ body {
   margin-left: 1vw;
 }
 .chatRoom{
-  position: relative;
-  top: 3.5em;
+  position: absolute;
+  top: 10%;
   background-color: lightblue;
   width: 100%;
+  height: 79vh;
 }
 .chatLog{
-  overflow-y: scroll;
   float: left;
+  width: 50%;
 }
 .participentsDiv{
   float: right;
 }
 .ChatInputDiv{
-  margin: 2em 10%;
+  margin: auto 10%;
+  position: relative;
+  top: 40%;
+}
+.chatMessage{
+  display: flex;
+}
+.chatMessage > p {
+  margin: 0 1rem;
 }
