@@ -5,6 +5,12 @@ const RequestURL = 'http://127.0.0.1:4000/messages/create'
 
 export default function ChatInput(props){
     const userInput = useRef(null)
+    document.addEventListener('keypress', (e)=>{
+        if(e.key === 'Enter'){
+            document.querySelector('.sendBtn').click(); //make keypress enter same as clicking on send btn 
+            e.stopImmediatePropagation()
+        }
+    })
     const sendMessage= async ()=>{
         const user = props.activeuser;
         const content = userInput.current.value;
