@@ -1,4 +1,4 @@
-const messages = [{'content':'hello', 'user':'omer'}]
+const {messages,users} = require('../controllers/Data')
 exports.createMessage = (req,res)=>{
     const {user, content} = req.body;
     const date = new Date().toTimeString().slice(0,8)
@@ -9,7 +9,8 @@ exports.createMessage = (req,res)=>{
 exports.updateMessages = (req,res)=>{
     res.setHeader('Content-Type', 'text/event-stream')
     const updateLog = setInterval(()=>{
-        res.write(`data: ${JSON.stringify(messages)}\n\n`)
+        const data = {messages,users}
+        res.write(`data: ${JSON.stringify(data)}\n\n`)
     },1000) 
     res.on('close',()=>{
         clearInterval(updateLog);

@@ -84,3 +84,6 @@ body {
 .chatMessage > p {
   margin: 0 1rem;
 }
+.green{
+  color: greenyellow;
+}

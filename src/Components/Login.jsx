@@ -3,7 +3,7 @@ import { useRef } from "react"
 import { Form, Button } from "react-bootstrap"
 import {errorMessage, succesMessage} from '../helpers/errorPop'
 import axios from "axios"
-const URL = 'http://localhost3000';
+const RequestURL = 'http://127.0.0.1:4000/users/logIn'
 export default function Login(props){
     const userName = useRef(null)
     const password = useRef(null)
@@ -16,7 +16,7 @@ export default function Login(props){
         }
         else{
             try {
-                await axios.post(URL, {userName:uName, password:uPass}) // check on backend if user is verified 
+                await axios.post(RequestURL, {userName:uName, password:uPass}) // check on backend if user is verified 
                 props.setLogged(true)
                 props.setUser(uName)
                 succesMessage('Successfully logged in')
