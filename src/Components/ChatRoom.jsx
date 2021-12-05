@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState ,useRef} from "react";
 import ChatInput from "./ChatInput";
 import ChatLog from "./ChatLog";
 import Participents from "./Participents";
@@ -6,20 +6,25 @@ import Participents from "./Participents";
 export default function ChatRoom(props){
     const [messageLog, setMessageLog] = useState(null) 
     const [allActiveUsers, setallActiveUsers]= useState(null)
-    const eventSource= new EventSource('http://localhost:4000/messages/update')
-    eventSource.onmessage = (e)=>{
-      setMessageLog(JSON.parse(e.data).messages);
-      setallActiveUsers(JSON.parse(e.data).users)
+    const scrollDiv = useRef(null)
+    useEffect(()=>{
+        const eventSource= new EventSource('http://localhost:4000/messages/update') 
+        eventSource.onmessage = (e)=>{
+          setMessageLog(JSON.parse(e.data).messages);
+          setallActiveUsers(JSON.parse(e.data).users)
+        }
+        eventSource.onerror = ()=> {
+          eventSource.close();}
     }
-    eventSource.onerror = ()=> {
-      eventSource.close();}
+    ,[])
 
     const renderMessages = ()=>{
         const logArr=[];
         if(messageLog === null) return  <ChatLog />
         messageLog.forEach((message,index) => 
             logArr.push(<ChatLog key={index} user={message.user} content = {message.content} date = {message.date}/>)
-        );   
+        );
+        scrollDiv.current.scrollTop =  scrollDiv.current.scrollHeight //auto scroll to bottom
         return logArr;
         }
     return(
@@ -29,7 +34,7 @@ export default function ChatRoom(props){
         </div>
         :
         <div className="chatRoom">
-            <div className='chatLog'>
+            <div ref={scrollDiv} className='chatLog'>
             {renderMessages()}
             </div>
             <Participents allActiveUsers={allActiveUsers}/>

@@ -14,7 +14,7 @@ export default function Participents(props){
         <div className='participentsDiv'>
             <div className='participents'>
                 {renderActiveUsers()}
-                <p className="participentsCounter"> <i className="fas fa-circle green"></i> {props.allActiveUsers?props.allActiveUsers.length : 0}</p>
+                <p className="participentsCounter"> <i className="fas fa-users"></i> {props.allActiveUsers?props.allActiveUsers.length : 0}</p>
             </div>
             <p className='participentsCounter'></p>
         </div>
