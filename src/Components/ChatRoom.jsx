@@ -8,7 +8,7 @@ export default function ChatRoom(props){
     const [allActiveUsers, setallActiveUsers]= useState(null)
     const scrollDiv = useRef(null)
     useEffect(()=>{
-        const eventSource= new EventSource('http://localhost:4000/messages/update') 
+        const eventSource= new EventSource(`http://localhost:4000/messages/update/${props.activeuser}`) 
         eventSource.onmessage = (e)=>{
           setMessageLog(JSON.parse(e.data).messages);
           setallActiveUsers(JSON.parse(e.data).users)

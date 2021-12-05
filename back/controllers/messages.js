@@ -1,5 +1,5 @@
 const {messages,users} = require('../controllers/Data')
-const {EventEmitter} = require('events')
+const {EventEmitter} = require('events');
 
 const msgEvents = new EventEmitter();
 msgEvents.on('createMessage', ({user,content, date})=>{
@@ -13,14 +13,18 @@ exports.createMessage = (req,res)=>{
     res.send("message added")
 }
 exports.updateMessages = (req,res)=>{
-    res.setHeader('Content-Type', 'text/event-stream')
-    // res.setHeader("Access-Control-Allow-Headers", "*");
-    // res.setHeader("Access-Control-Allow-Origin", "*");
+    res.writeHead(200, {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive"
+      });
     const data = {messages,users}
     res.write(`data: ${JSON.stringify(data)}\n\n`)    
     msgEvents.on('updateLog', ()=>{
         res.write(`data: ${JSON.stringify(data)}\n\n`)   
     })
     res.on('close',()=>{
-        res.end()})
+        const userName = req.params.user;
+        users.splice((users.findIndex(user=>user===userName)),1); //log out the active user on disconnect
+    })
 }
